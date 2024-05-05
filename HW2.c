@@ -37,7 +37,7 @@ void homework1 (void) //宣告函數 1
 	system("pause");//暫停畫面等待使用者案任意鍵
 	system("cls");//清除螢幕 
 	int a, count;
-
+ 
 	for(a=0;a<3;a++) //最多詢問三次密碼 
 	{
 		int input=0;
@@ -49,6 +49,7 @@ void homework1 (void) //宣告函數 1
 		if(input==2024)
 		{
 			homework2(); //如果密碼正確則跳到函數 2 
+			return 0;
 		}
 		else
 		{
@@ -57,14 +58,101 @@ void homework1 (void) //宣告函數 1
 			if (count>=3)
 			{
 				printf("warning...\n"); //密碼輸入三次錯誤結束程式 
-				return 0;
-			}
+				
+			}return 0;
 		}
 	}
 } //第一題結束 
 
+void homework2(void) //宣告函數 2 
+{
+	system("cls"); //清除第一題畫面 
+
+	printf("-------------------\n");
+	printf("| *************** |\n");
+	printf("|  a.畫出三角形   |\n");
+	printf("|  b.顯示乘法表   |\n"); //出現主選單 
+	printf("|  c.結束         |\n");
+	printf("| *************** |\n");
+	printf("-------------------\n");
+	
+	char input; //宣告字元 
+
+	printf("輸入A/a, B/b, C/c\n");
+	scanf("%s", &input);
+
+	switch(input)          //判斷輸入字元 
+	{
+		case 'B':
+		case 'b':
+			homework4();   //輸入B b則呼叫函數 4 
+			return 0;
+			break;
+		case 'C':
+		case 'c':
+			homework5();   //輸入C c則呼叫函數 5
+			return 0;
+			break;
+		default:
+			break;         
+	}
+}
+
+void homework4(void) //宣告函數 4
+{
+	int input;
+	int a,b;
+
+	for(;;)
+	{
+		printf("輸入數字 1~9 :");
+		scanf("%d", &input);
+		if (input>=1&&input<=9) //判斷輸入要是1-9 
+		{
+			for(a=1;a<=input;a++) //a初始值=1;當a<=input,跑進迴圈 
+			{
+				b=a;
+				printf("%d*%d=%d ",a,b,a*b);
+				printf("\n");
+			}
+			system("pause");
+			homework2(); //跑回主選單 
+			return 0;
+		}
+		else
+		{
+			continue;  //若不是1-9則要求重新輸入 
+		}
+	}
+}
+
+void homework5(void)  //宣告函數 5 
+{
+	int input;
+
+	for(;;)
+	{
+		printf("Continue? (y/n)"); //詢問是否繼續 
+		scanf("%s", &input);
+		if((input=='Y')|| (input=='y'))  
+		{
+			homework2(); //若輸入Y或y則回到主選單 
+			return 0;
+		}
+		else if((input=='N')|| (input=='n'))
+		{
+			return 0; //若輸入N或n則結束 
+		}
+		else
+		{
+			printf("Warring...\n"); //輸入錯誤則警告並要求重新輸入 
+			continue;   
+		}
+	}
+}
+
 int main(void)
 {
-	homework1(); //主程式呼叫函數一 
+	homework1(); //主程式呼叫函數 1 
 }
 
