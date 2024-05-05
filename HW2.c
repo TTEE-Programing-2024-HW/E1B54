@@ -5,6 +5,8 @@
 // Who      When        Why
 // XinRong  2024/05/04 Created HW2.c
 // XinRong  2024/05/04 第一題結束 
+// XinRong  2024/05/05 第245題結束
+// XinRong  2024/05/05 第3題結束  
 // =============================================================================
 
 #include <stdio.h>
@@ -36,14 +38,15 @@ void homework1 (void) //宣告函數 1
 	printf("1111111111          11111111111  55555       44\n");
 	system("pause");//暫停畫面等待使用者案任意鍵
 	system("cls");//清除螢幕 
+	//step2
 	int a, count;
  
 	for(a=0;a<3;a++) //最多詢問三次密碼 
 	{
 		int input=0;
 
-		printf("Please key in 4 numbers :");
-		scanf("%d", &input);
+		printf("Please key in 4 numbers : ");
+		scanf("%d", &input);              //輸入密碼 
 		printf("Your numbers is :%d\n",input);
 		
 		if(input==2024)
@@ -58,8 +61,7 @@ void homework1 (void) //宣告函數 1
 			if (count>=3)
 			{
 				printf("warning...\n"); //密碼輸入三次錯誤結束程式 
-				
-			}return 0;
+			}
 		}
 	}
 } //第一題結束 
@@ -78,11 +80,17 @@ void homework2(void) //宣告函數 2
 	
 	char input; //宣告字元 
 
-	printf("輸入A/a, B/b, C/c\n");
-	scanf("%s", &input);
-
+	printf("輸入A/a, B/b, C/c : ");
+	fflush(stdin);  //清除暫存區 
+	scanf("%c", &input);
 	switch(input)          //判斷輸入字元 
 	{
+		case 'A':
+		case 'a':
+			system("cls");  //按A a則清除 
+			homework3();  //再呼叫函數 3 
+			return 0;   
+			break;
 		case 'B':
 		case 'b':
 			homework4();   //輸入B b則呼叫函數 4 
@@ -96,6 +104,31 @@ void homework2(void) //宣告函數 2
 		default:
 			break;         
 	}
+}
+
+void homework3(void)   //宣告函數 3 
+{
+    char input,k;
+    int i,j;
+
+    printf("請輸入a-n : ");
+    fflush(stdin);  //清除暫存區 
+	scanf("%c",&input);
+	for(i=input;i>='a';i--) //i=input一開始輸入的字元,若i>=a跑進迴圈,每層字母由右到左遞減至a(控制印出的行數) 
+	{
+		for(j=0;j<=i-'a';j++) //控制空白數量  
+		{
+			printf(" ");
+		}
+		for(k=i;k<=input;k++) //控制印出的字元 
+		{
+			printf("%c",k);
+		}
+		printf("\n");
+	}
+	system("pause");
+	homework2(); //跑回主選單 
+	return 0;        
 }
 
 void homework4(void) //宣告函數 4
@@ -128,18 +161,19 @@ void homework4(void) //宣告函數 4
 
 void homework5(void)  //宣告函數 5 
 {
-	int input;
+	char input;
 
 	for(;;)
 	{
-		printf("Continue? (y/n)"); //詢問是否繼續 
-		scanf("%s", &input);
-		if((input=='Y')|| (input=='y'))  
+		printf("Continue? (y/n) "); //詢問是否繼續 
+		fflush(stdin);  //清除暫存區 
+		scanf("%c", &input);
+		if((input=='Y')||(input=='y'))  
 		{
 			homework2(); //若輸入Y或y則回到主選單 
 			return 0;
 		}
-		else if((input=='N')|| (input=='n'))
+		else if((input=='N')||(input=='n'))
 		{
 			return 0; //若輸入N或n則結束 
 		}
