@@ -4,11 +4,12 @@
 // =============================================================================
 // Who      When        Why
 // XinRong  2024/05/09 Created HW3.c
-// XinRong  2024/05/09 第126題結束 
+// XinRong  2024/05/09 第126題結束
+// XinRong  2024/05/10 第3題初次測試  
 // =============================================================================
 
 #include <stdio.h>
-
+int ar[9][9]; //宣告9*9陣列 
 
 void homework1 (void) //宣告函數 1 
 {
@@ -112,7 +113,34 @@ void homework2(void) //宣告函數 2
 
 void homework3(void)   //宣告函數 3 
 {
-    
+    int i,j;
+	int count = 0;
+	
+	for(i=0; i<9; i++)
+	{                        //將每個位子預設為'-' 
+		for(j=0; j<9; j++)
+		{
+			ar[i][j] = '-';
+		}
+	}
+	
+	while(count < 10)
+	{                       //隨機產生10個 
+		int x = rand() % 9;
+		int y = rand() % 9;
+		
+		if(ar[x][y] == '-')
+		{                   //防止重複 
+			ar[x][y] = '*';
+			count++;
+		}
+	}
+
+	seat();
+	
+	system("pause");
+	homework2();          //跑回主選單 
+	return 0;        
 }
 
 void homework4(void) //宣告函數 4
