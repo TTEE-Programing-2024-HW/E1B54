@@ -5,7 +5,8 @@
 // Who      When        Why
 // XinRong  2024/05/09 Created HW3.c
 // XinRong  2024/05/09 第126題結束
-// XinRong  2024/05/10 第3題初次測試  
+// XinRong  2024/05/10 第3題初次測試
+// XinRong  2024/05/10 第4題初次測試(未打完整) 
 // =============================================================================
 
 #include <stdio.h>
@@ -145,7 +146,50 @@ void homework3(void)   //宣告函數 3
 
 void homework4(void) //宣告函數 4
 {
-	
+	int i,j,input;
+	int a,b,count=0;
+
+	for(;;)
+	{
+		printf("請輸入人數 : (1-4)");
+		fflush(stdin);
+		scanf("%d", &input);
+		if (input>=1&&input<=4) //判斷輸入要是1-4
+		{
+			
+			int x = rand() % 9;
+			int y = rand() % 9;
+			
+			if(ar[x][y] != '*')
+			{
+				while(count < input)
+				{
+					
+					if(ar[x][y] == '-')
+					{                     //防止重複 
+						ar[x][y] = '@';
+						count++;
+						y++;
+					}
+					else
+					{
+						x = rand() % 9;
+						y = rand() % 9;
+					}
+				}
+			}
+			
+			seat();
+			
+			system("pause");
+			homework2(); //跑回主選單 
+			return 0;
+		}
+		else
+		{
+			continue;  //若不是1-4則要求重新輸入 
+		}
+	}
 }
 
 void homework5(void)  //宣告函數 5 
